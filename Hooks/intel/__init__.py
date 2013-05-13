@@ -22,12 +22,12 @@
 # List of package modules
 __all__ = [
            "intel",
-           "search",
+#           "search",
            "supersearch",
-           "bumchums",
-           "info",
-           "spam",
+#           "bumchums",
+#           "info",
+#           "spam",
            "racism",
            "covop",
-           "spamin",
+#           "spamin",
            ]
