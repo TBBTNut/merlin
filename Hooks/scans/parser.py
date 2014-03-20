@@ -112,7 +112,7 @@ class parse(Thread):
         m = re.search("<p class=\"right scan_time\">Scan time: ([^<]*)</p>", page)
         scantime = m.group(1)
         
-        planet = PlanetHistory.load_planet(x,y,z,tick,closest=Config.getboolean("Misc", "catchup"))
+        planet = Planet.load(x,y,z,)
 
         try:
             Q = session.query(Scan).filter(Scan.pa_id == pa_id).filter(Scan.planet_id == None)
@@ -329,9 +329,9 @@ class parse(Thread):
             fleetscan.landing_tick = eta + scan.tick
             fleetscan.fleet_size = fleetsize
 
-            attacker=Planet.load(originx,originy,originz)
+            attacker=PlanetHistory.load_planet(originx,originy,originz,scan.tick)
             if attacker is None:
-                scanlog("Can't find attacker in db: %s:%s:%s"%(originx,originy,originz))
+                scanlog("Can't find attacker in db: %s:%s:%s tick: %s"%(originx,originy,originz, scan.tick))
                 continue
             fleetscan.owner = attacker
             fleetscan.target = scan.planet
