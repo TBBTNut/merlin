@@ -112,9 +112,18 @@ class sms(loadable):
                 error = "Failed to get message ID from Twilio server."
         else:
             if mode == "googlevoice" or mode == "combined":
-                error = self.send_googlevoice(user, receiver, public_text, phone, text)
+                if Config.get("googlevoice", "user"):
+                    error = self.send_googlevoice(user, receiver, public_text, phone, text)
+                else:
+                    error = "smsmode set to Google Voice but no Google Voice account is available."
             if mode == "clickatell" or (mode == "combined" and error is not None):
-                error = self.send_clickatell(user, receiver, public_text, phone, text)
+                if Config.get("clickatell", "user"):
+                    error = self.send_clickatell(user, receiver, public_text, phone, text)
+                else:
+                    if mode == "combined":
+                        error = "smsmode set to combined but no SMS account is available."
+                    else:
+                        error = "smsmode set to Clickatell but no Clickatell account is available."
         
         if error is None:
             message.reply("Successfully processed To: %s Message: %s" % (receiver.name, decode(text)))
