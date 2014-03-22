@@ -128,6 +128,18 @@ class pref(loadable):
                     message.alert("Your alliance doesn't support SMS mode switching")
                     continue
                 if val[:1].upper() in User._sms_modes:
+                    if val[:1] == 'C' and not Config.get("clickatell", "user"):
+                        message.alert("Your alliance doesn't support Clickatell SMS")
+                        continue
+                    if val[:1] == 'G' and not Config.get("googlevoice", "user"):
+                        message.alert("Your alliance doesn't support Google Voice SMS")
+                        continue
+                    if val[:1] == 'T' and not Config.get("Twilio", "sid"):
+                        message.alert("Your alliance doesn't support Twilio SMS")
+                        continue
+                    if val[:1] == 'W' and not Config.get("WhatsApp", "login"):
+                        message.alert("Your alliance doesn't support WhatsApp")
+                        continue
                     user.smsmode = val
                     reply += " smsmode=%s" % (user.smsmode,)
                 elif val[:1].lower() == "b" or val in self.nulls:
