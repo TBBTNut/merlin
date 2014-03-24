@@ -4,7 +4,7 @@ from Hooks.scans.parser import parse
 from time import sleep
 import gc
 
-scanre=re.compile("http://[^/]+/(?:showscan|waves).pl\?scan_id=([0-9a-zA-Z]+)")
+scanre=re.compile("https?://[^/]+/(?:showscan|waves).pl\?scan_id=([0-9a-zA-Z]+)")
 i=0
 
 with open("1000scans.txt") as f:

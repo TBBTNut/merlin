@@ -32,8 +32,8 @@ from Core.db import session
 from Core.maps import Updates, Planet, PlanetHistory, Intel, Ship, Scan, Request
 from Core.maps import PlanetScan, DevScan, UnitScan, FleetScan, CovOp
 
-scanre=re.compile("http://[^/]+/(?:showscan|waves).pl\?scan_id=([0-9a-zA-Z]+)")
-scangrpre=re.compile("http://[^/]+/(?:showscan|waves).pl\?scan_grp=([0-9a-zA-Z]+)")
+scanre=re.compile("https?://[^/]+/(?:showscan|waves).pl\?scan_id=([0-9a-zA-Z]+)")
+scangrpre=re.compile("https?://[^/]+/(?:showscan|waves).pl\?scan_grp=([0-9a-zA-Z]+)")
 
 class push(object):
     # Robocop message pusher
