@@ -6,7 +6,7 @@ body {
 	font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
 	font-size: 8pt;
 	color: white;
-	background-color: #0a0a13;
+	background-color: #303030;
 	background-image: url(back.gif);
 	margin: 0;
 	padding: 0;
@@ -39,11 +39,11 @@ a:hover {
 }
 
 a.myplanet {
-	color:#FFFF99;
+	color:#FFD633;
 	font-weight:bold;
 }
 a.myplanet:hover {
-	color:#FFFFCC;
+	color:#FFFFFF;
 	font-weight:bold;
 }
 
@@ -149,15 +149,15 @@ tr.nolongerexists {
 }
 
 .green {
-	color: #CCFF99;
+	color: #00FF00;
 }
 
 .red {
-	color: #FF6666;
+	color: #FF0000;
 }
 
 .yellow {
-	color: #FFFF99;
+	color: #FFFF00;
 }
 
 .white {
@@ -165,31 +165,31 @@ tr.nolongerexists {
 }
 
 .orange {
-	color: #999;
+	color: #FFA500;
 }
 
 .Cat {
-	color: #99CCFF !important;
+	color: #4169E1 !important;
 	font-weight: bold;
 }
 
 .Ter {
-	color: #999 !important;
+	color: #778899 !important;
 	font-weight: bold;
 }
 
 .Xan {
-	color: #CCFF99 !important;
+	color: #00FF00 !important;
 	font-weight: bold;
 }
 
 .Zik {
-	color: #FF6666 !important;
+	color: #FF0000 !important;
 	font-weight: bold;
 }
 
 .Etd {
-	color: #CCC !important;
+	color: #FFFFFF !important;
 	font-weight: bold;
 }
 
