@@ -24,7 +24,7 @@
 import re
 import socket
 import time
-from Queue import PriorityQueue
+from Queue import PriorityQueue, Empty
 from threading import Thread
 
 from Core.exceptions_ import Reboot
@@ -37,6 +37,7 @@ class connection(object):
     output = PriorityQueue()
     queue_warned = 0
     wait_warned = 0
+    quitting = False
     
     def __init__(self):
         # Socket to handle is provided
@@ -83,6 +84,7 @@ class connection(object):
         print "%s Disconnecting IRC... (%s)" % (time.asctime(),encode(line),)
         try:
             self.write("QUIT :%s" % (line,))
+            self.quitting = True
             self.thread.join()
         except Reboot:
             pass
@@ -102,7 +104,13 @@ class connection(object):
     def writeout(self):
         # Write to socket/server
         while True:
-            (priority, sent, line) = self.output.get(True, None)
+            try:
+                (priority, sent, line) = self.output.get(True, 1)
+            except Empty:
+                if self.quitting:
+                    break
+                else:
+                    continue
             try:
                 while self.last + Config.getfloat("Connection", "antiflood") * (1 + (len(line) > 300) + (priority > 10)) >= time.time():
                     time.sleep(0.5)
