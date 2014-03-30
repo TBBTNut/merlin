@@ -78,7 +78,8 @@ class Message(object):
                 self._msg = " ".join(line.split()[3:])
             if self._msg and self._msg[0] == ":":
                 self._msg = self._msg[1:]
-            if not self._msg:
+            if (not self._msg or self._msg.strip() == "") and self._command != "PRIVMSG":
+                # CUT needed this, but merlin gets *very* upset on an empty PRIVMSG.
                 self._msgerror = True
         except ValueError:
             self._msgerror = True
